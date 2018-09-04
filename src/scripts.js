@@ -14,9 +14,13 @@ function appendList(lists) {
   const bucketList = lists.forEach(list => {
     $('.list-container').append(`
       <article class="bucket-item">
-        <h2>${list.title}</h2>
-        <h3>${list.description}</h3>
-        <button class="delete-button" id=${list.id}>delete</button>
+        <div>
+          <h2>${list.title}</h2>
+          <h3>${list.description}</h3>
+        </div
+        <div>
+          <button class="delete-button" id=${list.id}>delete</button>
+        </div>
       </article>`)
   })
 }
