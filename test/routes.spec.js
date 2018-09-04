@@ -21,6 +21,7 @@ describe('api endpoints', () => {
       })
     })
   })
+  
   describe('GET to /api/v1/list_items', () => {
     it('should return all list_items', done => {
       chai.request(server)
@@ -39,6 +40,7 @@ describe('api endpoints', () => {
         done()
       })
     })
+
     it('should return a 404 for a route that does not exist', done => {
       chai.request(server)
       .get('/sad')
