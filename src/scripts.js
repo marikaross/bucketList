@@ -1,5 +1,5 @@
 $(document).ready(retrieveList);
-$('.add-button').on('click', postListItem)
+$('.add-button').on('click', grabContent)
 
 async function retrieveList() {
   const url = '/api/v1/list_items'
@@ -20,6 +20,25 @@ function appendList(lists) {
   })
 }
 
-function postListItem(event) {
+function grabContent(event) {
   event.prevent(default)
+  let listTitle = $('.list-title').val();
+  let listDesc = $('.list-desc').val();
+  let listItem = {
+    title: listTitle,
+    description: listDesc
+  }
+  postItem(listItem)
+  retrieveList()
+}
+
+async function postItem(listItem) {
+  const url = '/api/v1/list_items'
+  const response = await fetch(url, 
+    {method: 'POST',
+    headers:{
+    'Content-Type': 'application/json'},
+    body: JSON.stringify(listItem)
+    })
+  const result = await response.json()
 }
