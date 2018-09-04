@@ -1,5 +1,6 @@
-$(document).ready(retrieveList);
-$('.add-button').on('click', grabContent)
+$(window).on('load', retrieveList);
+$('.add-button').on('click', grabContent);
+$('.list-container').on('click', '.delete-button', deleteItem)
 
 async function retrieveList() {
   const url = '/api/v1/list_items'
@@ -12,24 +13,25 @@ function appendList(lists) {
   $('.list-container').empty()
   const bucketList = lists.forEach(list => {
     $('.list-container').append(`
-      <article class="bucket-item" id=${list.id}>
+      <article class="bucket-item">
         <h2>${list.title}</h2>
         <h3>${list.description}</h3>
-        <button>delete</button>
+        <button class="delete-button" id=${list.id}>delete</button>
       </article>`)
   })
 }
 
 function grabContent(event) {
-  event.prevent(default)
+  event.preventDefault()
   let listTitle = $('.list-title').val();
   let listDesc = $('.list-desc').val();
   let listItem = {
     title: listTitle,
     description: listDesc
   }
-  postItem(listItem)
-  retrieveList()
+  clearInputs()
+  postItem(listItem);
+  retrieveList();
 }
 
 async function postItem(listItem) {
@@ -40,5 +42,21 @@ async function postItem(listItem) {
     'Content-Type': 'application/json'},
     body: JSON.stringify(listItem)
     })
+  const result = await response.json()
+}
+
+function clearInputs() {
+  $('.list-title').val('') 
+  $('.list-desc').val('') 
+}
+
+async function deleteItem(event) {
+  $(this).parents('.bucket-item').remove()
+  let id = event.target.id
+  let responseBody = {
+    method: 'DELETE',
+    headers: {'Content-Type': 'application/json'}
+  }
+  const response = await fetch(`/api/v1/list_items/${id}`, responseBody)
   const result = await response.json()
 }
