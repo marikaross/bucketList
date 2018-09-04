@@ -1,0 +1,79 @@
+html, body {
+  background-color: #E3FFF9;
+  box-sizing: border-box;
+  color: #344B47;
+  font-family: 'Quicksand', sans serif;
+  font-weight: 400;
+  margin: auto;
+  padding: 0;
+  width: 100%;
+}
+
+.idea-entry {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+h1 {
+  margin: 20px;
+}
+
+input {
+  display: block;
+  height: 30px;
+  margin: 20px;
+}
+
+button,
+input {
+  border-radius: 5px;
+}
+
+.add-button {
+  border: none;
+  margin: 20px;
+  padding: 0.5%;
+  background-color: #00c2ae;
+}
+
+hr {
+  width: 80%;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bucket-item {
+  background-color: #E8F3F1;
+  border: solid 0.5px #cccccc;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: 1%;
+  padding: 1%;
+  width: 35%;
+}
+
+.delete-button {
+  background-color: #579D91;
+  border: none;
+  height: 3%;
+  padding: 1%;
+}
+
+button:hover {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2)
+}
+
+
+
+
+
