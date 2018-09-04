@@ -3,10 +3,15 @@
 module.exports = {
   development: {
     client: 'pg',
-    connection: 'postgres://localhost/bucketList',
+    connection: 'postgres://localhost/publications',
+    migrations: {
+      directory: './db/migrations'
+    },
+    seeds: {
+      directory: './db/seeds/dev'
+    },
     useNullAsDefault: true
-  }
-};
+  },
 
   staging: {
     client: 'postgresql',
