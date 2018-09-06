@@ -69,6 +69,22 @@ describe('api endpoints', () => {
         });
     });
 
+    it('should return an error if there is a missing parameter', done => {
+      chai.request(server)
+      .post('/api/v1/list_items')
+      .send({
+        title: 'Circus'
+      })
+      .end((err, response) => {
+        response.should.have.status(422)
+        response.should.be.json
+        response.body.should.be.a('object')
+        response.body.should.have.property('error')
+        response.body.error.should.equal('Expected format: {title: <STRING>, description: <STRING>}. You are missing a "description property"')
+        done()
+      })
+    })
+
     it('should return a 404 for a route that does not exist', done => {
       chai.request(server)
         .get('/sad')
@@ -101,6 +117,15 @@ describe('api endpoints', () => {
           response.body[0].id.should.equal(1);
           done()
         })
+      })
+    })
+
+    it('should return an error if the id does not exist', done => {
+      chai.request(server)
+      .delete('/api/v1/list_item/100')
+      .end((err, response) => {
+        response.should.have.status(404);
+        done()
       })
     })
   })
